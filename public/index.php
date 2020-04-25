@@ -8,8 +8,6 @@ require_once '../vendor/autoload.php';
 
 session_start();
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
-$dotenv->load();
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Aura\Router\RouterContainer;
@@ -29,7 +27,9 @@ $capsule->addConnection([
 $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
-$request = Laminas\Diactoros\ServerRequestFactory::fromGlobals( // implementacion de diactoros para las peticiones
+
+// implementacion de diactoros para las peticiones con las variables Su perglobales lo que me permite ahorrar codigo
+$request = Laminas\Diactoros\ServerRequestFactory::fromGlobals( 
     $_SERVER,
     $_GET,
     $_POST,
@@ -37,61 +37,64 @@ $request = Laminas\Diactoros\ServerRequestFactory::fromGlobals( // implementacio
     $_FILES
 );
 
+// aca se maperon las rutas del proyecto gracias a la libreria de Aura Router
+// Lo que me permite acceder a las paginas con una direccion que yo establesco y no 
+//directamente con el nombre del archivo.php
 
 $routerContainer = new RouterContainer();
 $map = $routerContainer->getMap();
-$map->get('index','/Proyecto_php/',[
+$map->get('index','/ClientManager/',[
     'controller'=> 'app\Controllers\IndexController',
     'action' => 'indexAction'
 ]);
 
-$map->get('saveJobs','/Proyecto_php/jobs/add',[
-    'controller'=> 'app\Controllers\JobsController',
+$map->get('saveProducts','/ClientManager/Products/add',[
+    'controller'=> 'app\Controllers\ProductsController',
     'action' => 'getAddJobAction'
 ]);
 
-$map->post('addJobs','/Proyecto_php/jobs/add',[
-    'controller'=> 'app\Controllers\JobsController',
+$map->post('addProducts','/ClientManager/Products/add',[
+    'controller'=> 'app\Controllers\ProductsController',
     'action' => 'getAddJobAction'
 ]);
 
 
-$map->get('saveProjects','/Proyecto_php/projects/add',[
-    'controller'=> 'app\Controllers\ProjectsController',
-    'action' => 'getAddProjectsAction'
+$map->get('saveSuppliers','/ClientManager/Suppliers/add',[
+    'controller'=> 'app\Controllers\SuppliersController',
+    'action' => 'getAddSuppliersAction'
 ]);
 
-$map->post('addProjects','/Proyecto_php/projects/add',[
-    'controller'=> 'app\Controllers\ProjectsController',
-    'action' => 'getAddProjectsAction'
+$map->post('addSuppliers','/ClientManager/Suppliers/add',[
+    'controller'=> 'app\Controllers\SuppliersController',
+    'action' => 'getAddSuppliersAction'
 ]);
 
-$map->get('saveUser','/Proyecto_php/users/add',[
+$map->get('saveUsers','/ClientManager/Users/add',[
     'controller'=> 'app\Controllers\UsersController',
     'action' => 'getAddUsersAction'
 ]);
 
-$map->post('addUser','/Proyecto_php/users/add',[
+$map->post('addUsers','/ClientManager/Users/add',[
     'controller'=> 'app\Controllers\UsersController',
     'action' => 'getAddUsersAction'
 ]);
 
-$map->get('loginForm','/Proyecto_php/login',[
+$map->get('loginForm','/ClientManager/login',[
     'controller'=> 'app\Controllers\AuthController',
     'action' => 'getLogin'
 ]);
 
-$map->get('logout','/Proyecto_php/logout',[
+$map->get('logout','/ClientManager/logout',[
     'controller'=> 'app\Controllers\AuthController',
     'action' => 'getLogout'
 ]);
 
-$map->post('auth','/Proyecto_php/auth',[
+$map->post('auth','/ClientManager/auth',[
     'controller'=> 'app\Controllers\AuthController',
     'action' => 'postLogin'
 ]);
 
-$map->get('admin','/Proyecto_php/admin',[
+$map->get('admin','/ClientManager/admin',[
     'controller'=> 'app\Controllers\AdminController',
     'action' => 'getIndex',
     'auth' => true
@@ -99,50 +102,8 @@ $map->get('admin','/Proyecto_php/admin',[
 
 
 
-
 $matcher = $routerContainer->getMatcher();
 $route = $matcher->match($request);
-
-function PrintElement($job){
-
-    // if($job->visible == false){
-    //       return;    
-   //    }
-
-      echo  '<li class="work-position">';
-                  echo  '<h5>'.$job->title .'</h5>';
-                  echo  '<p>' .$job->description.'</p>';
-                  echo  '<p>' .$job->getDurationAsString().'</p>';
-                  echo  '<strong>Achievements: </strong>';
-                  echo  '<ul> ';
-                  echo  '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li> ';
-                  echo  '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li> ';
-                  echo  '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li> ';
-                  echo  '</ul>';
-                  echo  '</li>';
-
-}
-
-
-function printElementProject($project){
-
-    // if($job->visible == false){
-    //       return;    
-   //    }
-
-      echo  '<li class="work-position">';
-                  echo  '<h5>'.$project->title .'</h5>';
-                  echo  '<p>' .$project->description.'</p>';
-                  echo  '<p>' .$project->getDurationAsString().'</p>';
-                  echo  '<strong>Achievements: </strong>';
-                  echo  '<ul> ';
-                  echo  '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li> ';
-                  echo  '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li> ';
-                  echo  '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li> ';
-                  echo  '</ul>';
-                  echo  '</li>';
-
-}
 
 
 if(!$route){
