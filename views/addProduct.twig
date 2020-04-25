@@ -1,0 +1,24 @@
+
+{% extends "mainTemplate.twig" %}
+
+{% block content %}
+  <h1>Agregar Nuevo Producto</h1>
+   
+   {% if responseMessage != null %}
+   <div class="alert alert-primary" role="alert">
+           {{responseMessage}}
+   </div>
+  {% endif %}
+
+       <form action="/ClientManager/Products/add" method="POST" enctype = "multipart/form-data">
+           <label>Nombre del Producto: </label>
+           <input type="text" name="txt_productName"><br>
+           <input type="file" name="logo"><br><br>
+           <button type="submit">Guardar</button>
+
+       </form>  
+{% endblock %}
+
+
+
+

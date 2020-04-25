@@ -50,23 +50,23 @@ $map->get('index','/ClientManager/',[
 
 $map->get('saveProducts','/ClientManager/Products/add',[
     'controller'=> 'app\Controllers\ProductsController',
-    'action' => 'getAddJobAction'
+    'action' => 'getAddProductAction'
 ]);
 
 $map->post('addProducts','/ClientManager/Products/add',[
     'controller'=> 'app\Controllers\ProductsController',
-    'action' => 'getAddJobAction'
+    'action' => 'getAddProductAction'
 ]);
 
 
 $map->get('saveSuppliers','/ClientManager/Suppliers/add',[
     'controller'=> 'app\Controllers\SuppliersController',
-    'action' => 'getAddSuppliersAction'
+    'action' => 'getAddSupplierAction'
 ]);
 
 $map->post('addSuppliers','/ClientManager/Suppliers/add',[
     'controller'=> 'app\Controllers\SuppliersController',
-    'action' => 'getAddSuppliersAction'
+    'action' => 'getAddSupplierAction'
 ]);
 
 $map->get('saveUsers','/ClientManager/Users/add',[

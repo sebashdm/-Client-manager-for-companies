@@ -2,13 +2,13 @@
 
 namespace app\Controllers;
 
-use app\models\job;
+use app\models\Product;
 use Respect\Validation\Validator;
 
-class JobsController extends BaseController
+class ProductsController extends BaseController
 {
 	
-	public function getAddJobAction($request){
+	public function getAddProductAction($request){
           
           $responseMessage = null;
 			
@@ -16,13 +16,13 @@ class JobsController extends BaseController
 
 
             $postData = $request->getParsedBody();
-			$jobValidator = 
+			$ProductValidator = 
 
-			Validator::key('txt_title', Validator::stringType()->notEmpty())
-			->key('txt_description', Validator::stringType()->notEmpty());
+			Validator::key('txt_productName', Validator::stringType()->notEmpty());
+			
 
              try {
-	                $jobValidator->assert($postData);
+	                $ProductValidator->assert($postData);
 
                     $files=$request->getUploadedFiles();
                     $logo = $files['logo'];
@@ -33,12 +33,11 @@ class JobsController extends BaseController
                     		$logo->moveTo("uploads/$fileName");
                     	}
 
-					$job = new job();
-					$job->title = $postData["txt_title"];
-					$job->Description = $postData["txt_description"];
-					$job->fileName;
-					$job->Save();
-					$responseMessage = 'Job Saved';
+					$product = new Product();
+					$product->productName = $postData["txt_productName"];
+					$product->fileName=$fileName;
+					$product->Save();
+					$responseMessage = 'Producto Guardado Correctamente';
                     
             
              } catch(\Exception $e){
@@ -49,7 +48,7 @@ class JobsController extends BaseController
          
 			}
 
-		 return $this->renderHTML('addJob.twig',[
+		 return $this->renderHTML('addProduct.twig',[
 		 	'responseMessage' => $responseMessage
 		 ]);
 
