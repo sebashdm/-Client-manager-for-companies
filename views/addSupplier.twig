@@ -1,0 +1,25 @@
+
+{% extends "mainTemplate.twig" %}
+
+{% block content %}
+  <h1>Agregar Nuevo Proveedor</h1>
+   
+   {% if responseMessage != null %}
+   <div class="alert alert-primary" role="alert">
+           {{responseMessage}}
+   </div>
+  {% endif %}
+
+       <form action="/ClientManager/Suppliers/add" method="POST">
+           <label>Nombre Proveedor: </label>
+           <input type="text" name="txt_supplierName"><br>
+           <label>Tipo proveedor: </label>
+           <input type="text" name="txt_supplierType"><br>
+           <label>email: </label>
+           <input type="email" name="txt_email"><br>
+           <label>telefono: </label>
+           <input type="text" name="txt_telefono"><br>
+           <input type="file" name="logoproject"><br>
+           <button type="submit">Guardar</button>
+       </form>  
+{% endblock %}

@@ -15,15 +15,8 @@ class ProductsController extends BaseController
 			if(  $request->getMethod() == 'POST'){
 
 
-            $postData = $request->getParsedBody();
-			$ProductValidator = 
-
-			Validator::key('txt_productName', Validator::stringType()->notEmpty());
-			
-
-             try {
-	                $ProductValidator->assert($postData);
-
+                    $postData = $request->getParsedBody();
+		
                     $files=$request->getUploadedFiles();
                     $logo = $files['logo'];
 
@@ -34,16 +27,13 @@ class ProductsController extends BaseController
                     	}
 
 					$product = new Product();
-					$product->productName = $postData["txt_productName"];
-					$product->fileName=$fileName;
+					$product->productname = $postData["txt_productName"];
+					$product->filename=$fileName;
 					$product->Save();
 					$responseMessage = 'Producto Guardado Correctamente';
                     
             
-             } catch(\Exception $e){
-                   $responseMessage ="NO ENVIAR DATOS VACIOS";
-
-             }
+             
 
          
 			}
