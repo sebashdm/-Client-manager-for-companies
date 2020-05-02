@@ -1,0 +1,34 @@
+
+{% extends "mainTemplate.twig" %}
+
+{% block content %}
+  <h1>Agregar Nuevo Cliente</h1>
+   
+   {% if responseMessage != null %}
+   <div class="alert alert-primary" role="alert">
+           {{responseMessage}}
+   </div>
+  {% endif %}
+
+       <form action="/ClientManager/Customers/add" method="POST" enctype = "multipart/form-data">
+           <label>Nombre Cliente: </label>
+           <input type="text" name="txt_name"><br>
+
+           <label>Tipo Cliente: </label>
+           <input type="text" name="txt_customerType"><br>
+
+           <label>Email: </label>
+           <input type="text" name="txt_email"><br>
+
+           <label>Numero de telefono: </label>
+           <input type="text" name="txt_phone"><br>
+
+           <label>Tipo Credito Aprobado: </label>
+           <input type="text" name="txt_creditType"><br>
+
+           <input type="file" name="logo"><br><br>
+           <button type="submit">Guardar</button>
+
+       </form>  
+{% endblock %}
+

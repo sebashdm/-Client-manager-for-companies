@@ -10,7 +10,7 @@ class IndexController extends BaseController
 	public function indexAction(){
 		
 
-		$products = product::all();
+		$products = product::all(); //Aca se realiza la consulta a la bd y me trae todos los registros que hay en product.
 	
 		return $this->renderHTML('index.twig',[
 			'products' => $products

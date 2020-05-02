@@ -58,6 +58,15 @@ $map->post('addProducts','/ClientManager/Products/add',[
     'action' => 'getAddProductAction'
 ]);
 
+$map->get('saveCustomers','/ClientManager/Customers/add',[
+    'controller'=> 'app\Controllers\CustomersController',
+    'action' => 'getAddCustomerAction'
+]);
+
+$map->post('addCustomers','/ClientManager/Customers/add',[
+    'controller'=> 'app\Controllers\CustomersController',
+    'action' => 'getAddCustomerAction'
+]);
 
 $map->get('saveSuppliers','/ClientManager/Suppliers/add',[
     'controller'=> 'app\Controllers\SuppliersController',

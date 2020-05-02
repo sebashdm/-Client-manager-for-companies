@@ -15,23 +15,43 @@
       <div class="col">
         <div>
           <h3 class="border-bottom-gray" >Products</h3>
-          <ul>
-                   <ul>
-                      {% for product in products %}
-                     <li class="work-position"> 
-                         <h5>{{ product.productname }} </h5>
+         
+            <table>
+                  <tr>
+
+                    <td>Nombre Producto</td>
+
+                    <td>Ilustracion </td>
+
+                    <td>Acciones</td>
+
+                  </tr>
+
+                  
+                    {% for product in products %}
+                  <tr>
+                         <td>{{ product.productname }} </td>
                      
                       {% if product.filename == '' %}
-                           <h5>No image founded :/</h5>
+                           <td>No image founded :/</td>
                       {% else %}
-                           <img src="uploads/{{ product.filename }}" alt="image"style=" width:120px; heigh:90px;">
+                          <td> <img src="uploads/{{ product.filename }}" alt="image"style=" width:120px; heigh:90px;"></td>
                       {% endif %}
-                     </li>            
+
+                  </tr>            
                {% endfor %}
+                   
 
-                  </ul>
+                    
 
-          </ul>
+            
+            </table>
+        
+                  
+                    
+
+                  
+
         </div>
        
       
