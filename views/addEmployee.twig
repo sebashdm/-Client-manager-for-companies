@@ -1,0 +1,44 @@
+
+{% extends "mainTemplate.twig" %}
+
+{% block content %}
+  <h1>Agregar Nuevo Empleado</h1>
+   
+   {% if responseMessage != null %}
+   <div class="alert alert-primary" role="alert">
+           {{responseMessage}}
+   </div>
+  {% endif %}
+
+       <form action="/ClientManager/Employees/add" method="POST" enctype = "multipart/form-data">
+           <label>Nombre Empleado: </label>
+           <input type="text" name="txt_name"><br>
+
+           <label>Documento: </label>
+           <input type="text" name="txt_dni"><br>
+
+           <label>Salario: </label>
+           <input type="text" name="txt_salary"><br>
+
+           <label>Deducciones: </label>
+           <input type="text" name="txt_deductions"><br>
+        
+           <label>Foto empleado: </label>
+           <input type="file" name="picture"><br><br>
+          
+           <label>Hoja de Vida: </label>
+           <input type="file" name="curriculum"><br><br>
+
+           <label>Email: </label>
+           <input type="text" name="txt_email"><br>
+
+           <label>Numero celular: </label>
+           <input type="text" name="txt_movilphone"><br>
+
+           <label>Numero Telefono fijo: </label>
+           <input type="text" name="txt_phone"><br>
+
+           <button type="submit">Guardar</button>
+
+       </form>  
+{% endblock %}

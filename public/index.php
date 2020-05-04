@@ -48,6 +48,16 @@ $map->get('index','/ClientManager/',[
     'action' => 'indexAction'
 ]);
 
+$map->get('viewEmployess','/ClientManager/Employees/',[
+    'controller'=> 'app\Controllers\ViewEmployeesController',
+    'action' => 'ViewEmployeesAction'
+]);
+
+$map->get('viewCustomers','/ClientManager/Customers/',[
+    'controller'=> 'app\Controllers\ViewCustomersController',
+    'action' => 'ViewCustomersAction'
+]);
+
 $map->get('saveProducts','/ClientManager/Products/add',[
     'controller'=> 'app\Controllers\ProductsController',
     'action' => 'getAddProductAction'
@@ -66,6 +76,16 @@ $map->get('saveCustomers','/ClientManager/Customers/add',[
 $map->post('addCustomers','/ClientManager/Customers/add',[
     'controller'=> 'app\Controllers\CustomersController',
     'action' => 'getAddCustomerAction'
+]);
+
+$map->get('saveEmployees','/ClientManager/Employees/add',[
+    'controller'=> 'app\Controllers\EmployeesController',
+    'action' => 'getAddEmployeeAction'
+]);
+
+$map->post('addEmployees','/ClientManager/Employees/add',[
+    'controller'=> 'app\Controllers\EmployeesController',
+    'action' => 'getAddEmployeeAction'
 ]);
 
 $map->get('saveSuppliers','/ClientManager/Suppliers/add',[

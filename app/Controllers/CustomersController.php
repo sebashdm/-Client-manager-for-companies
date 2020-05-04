@@ -27,14 +27,14 @@ class CustomersController extends BaseController
                     	}
                     // Creacion de objeto cliente e ingreso de datos a la bd
 					$Customer = new Customer();
-                    $Customer->name = $postData["txt_name"];
-                    $Customer->customerType = $postData["txt_customerType"];
-                    $Customer->filename=$fileName;
+                    $Customer->nombre = $postData["txt_name"];
+                    $Customer->tipo = $postData["txt_customerType"];
+                    $Customer->imagen=$fileName;
                     $Customer->email = $postData["txt_email"];
-                    $Customer->phone = $postData["txt_phone"];
-                    $Customer->creditType = $postData["txt_creditType"];
+                    $Customer->telefono = $postData["txt_phone"];
+                    $Customer->cupo = $postData["txt_creditType"];
 					$Customer->Save();
-					$responseMessage = 'Producto Guardado Correctamente';
+					$responseMessage = 'Cliente Guardado Correctamente';
 			}
 
 		 return $this->renderHTML('addCustomer.twig',[

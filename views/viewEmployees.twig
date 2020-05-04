@@ -1,0 +1,50 @@
+{% extends "mainTemplate.twig" %}
+
+{% block content %}
+
+<div id="resume-header" class="row">
+     
+      <div class="col">
+        <h1>{{name}}</h1>
+        <h2>Client Manager</h2>
+      </div>
+    </div>
+   
+    <div class="row">
+      <div class="col">
+        <div>
+          <h3 class="border-bottom-gray">Employees</h3>
+         
+            <table border = '1'>
+                  <tr>
+                    <td>Nombre Empleado</td>
+                    <td>Documento</td>
+                    <td>Salario Basico</td>
+                    <td>Foto Empleado</td>
+                    <td>Email</td>
+                    <td>Celular</td>
+                    <td>Acciones</td>
+                  </tr>
+                    {% for Employee in Employees %}
+                  <tr>
+                     <td>{{ Employee.nombre }} </td>
+                     <td>{{ Employee.documento }} </td>
+                     <td>{{ Employee.salario_basico}} </td>
+                     
+                      {% if Employee.foto == '' %}
+                           <td>No image founded :/</td>
+                      {% else %}
+                          <td> <img src="../uploads/{{ Employee.foto }}" alt="image"style=" width:120px; heigh:90px;"></td>
+                      {% endif %}
+
+                      <td>{{ Employee.email}} </td>
+                      <td>{{ Employee.celular}} </td>
+
+                  </tr>            
+               {% endfor %}
+            </table>
+        </div>
+    <div id="resume-footer" class="row">
+     
+    </div>
+{% endblock %}

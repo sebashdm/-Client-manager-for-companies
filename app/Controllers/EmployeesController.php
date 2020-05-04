@@ -18,37 +18,38 @@ class EmployeesController extends BaseController
                     $postData = $request->getParsedBody();
 		
                     $files=$request->getUploadedFiles();
-                    $logo = $files['logo'];
-                    $document = $files['documento'];
+                    $picture = $files['picture'];
+                    $curriculum = $files['curriculum'];
 
-                    if($logo->getError() == UPLOAD_ERR_OK)
+                    if($picture->getError() == UPLOAD_ERR_OK)
                     	{
-                    		$fileName = $logo->getClientFilename();
-                    		$logo->moveTo("uploads/$fileName");
+                    		$fileName = $picture->getClientFilename();
+                    		$picture->moveTo("uploads/$fileName");
                         }
 
-                     if($document->getError() == UPLOAD_ERR_OK)
+                     if($curriculum->getError() == UPLOAD_ERR_OK)
                     	{
-                    		$fileNameDocument = $document->getClientFilename();
-                    		$document->moveTo("documents/$fileNameDocument");
+                    		$fileNameDocument = $curriculum->getClientFilename();
+                    		$curriculum->moveTo("documents/$fileNameDocument");
                         }
                         
 
                     // Creacion de objeto empleado e ingreso de datos a la bd
 					$employee = new Employee();
-                    $employee->name = $postData["txt_name"];
-                    $employee->salary = $postData["txt_salary"];
-                    $employee->deductions = $postData["txt_deductions"];
-                    $employee->filename=$fileName;
-                    $employee->filenamedocument=$fileNameDocument;
+                    $employee->nombre = $postData["txt_name"];
+                    $employee->documento = $postData["txt_dni"];
+                    $employee->salario_basico = $postData["txt_salary"];
+                    $employee->deducion = $postData["txt_deductions"];
+                    $employee->foto=$fileName;
+                    $employee->hoja_vida=$fileNameDocument;
                     $employee->email = $postData["txt_email"];
-                    $employee->phone = $postData["txt_phone"];
-                    $employee->movilphone = $postData["txt_movilphone"];
+                    $employee->celular = $postData["txt_movilphone"];
+                    $employee->telefono = $postData["txt_phone"];
 					$employee->Save();
-					$responseMessage = 'Producto Guardado Correctamente';
+					$responseMessage = 'Empleado Guardado Correctamente';
 			}
 
-		 return $this->renderHTML('addCustomer.twig',[
+		 return $this->renderHTML('addEmployee.twig',[
 		 	'responseMessage' => $responseMessage
 		 ]);
 
