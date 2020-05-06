@@ -45,82 +45,99 @@ $routerContainer = new RouterContainer();
 $map = $routerContainer->getMap();
 $map->get('index','/ClientManager/',[
     'controller'=> 'app\Controllers\IndexController',
-    'action' => 'indexAction'
+    'action' => 'indexAction',
+    'auth' => true // ruta requiere autenticacion
+
 ]);
 
 $map->get('viewEmployess','/ClientManager/Employees/',[
     'controller'=> 'app\Controllers\ViewEmployeesController',
-    'action' => 'ViewEmployeesAction'
+    'action' => 'ViewEmployeesAction',
+    'auth' => true
 ]);
 
 $map->get('viewCustomers','/ClientManager/Customers/',[
     'controller'=> 'app\Controllers\ViewCustomersController',
-    'action' => 'ViewCustomersAction'
+    'action' => 'ViewCustomersAction',
+    'auth' => true
 ]);
 
 $map->get('saveProducts','/ClientManager/Products/add',[
     'controller'=> 'app\Controllers\ProductsController',
-    'action' => 'getAddProductAction'
+    'action' => 'getAddProductAction',
+    'auth' => true
 ]);
 
 $map->post('addProducts','/ClientManager/Products/add',[
     'controller'=> 'app\Controllers\ProductsController',
-    'action' => 'getAddProductAction'
+    'action' => 'getAddProductAction',
+    'auth' => true
 ]);
 
 $map->get('saveCustomers','/ClientManager/Customers/add',[
     'controller'=> 'app\Controllers\CustomersController',
-    'action' => 'getAddCustomerAction'
+    'action' => 'getAddCustomerAction',
+    'auth' => true
 ]);
 
 $map->post('addCustomers','/ClientManager/Customers/add',[
     'controller'=> 'app\Controllers\CustomersController',
-    'action' => 'getAddCustomerAction'
+    'action' => 'getAddCustomerAction',
+    'auth' => true
 ]);
 
 $map->get('saveEmployees','/ClientManager/Employees/add',[
     'controller'=> 'app\Controllers\EmployeesController',
-    'action' => 'getAddEmployeeAction'
+    'action' => 'getAddEmployeeAction',
+    'auth' => true
 ]);
 
 $map->post('addEmployees','/ClientManager/Employees/add',[
     'controller'=> 'app\Controllers\EmployeesController',
-    'action' => 'getAddEmployeeAction'
+    'action' => 'getAddEmployeeAction',
+    'auth' => true
 ]);
 
 $map->get('saveSuppliers','/ClientManager/Suppliers/add',[
     'controller'=> 'app\Controllers\SuppliersController',
-    'action' => 'getAddSupplierAction'
+    'action' => 'getAddSupplierAction',
+    'auth' => true
 ]);
 
 $map->post('addSuppliers','/ClientManager/Suppliers/add',[
     'controller'=> 'app\Controllers\SuppliersController',
-    'action' => 'getAddSupplierAction'
+    'action' => 'getAddSupplierAction',
+    'auth' => true
 ]);
 
 $map->get('saveUsers','/ClientManager/Users/add',[
     'controller'=> 'app\Controllers\UsersController',
-    'action' => 'getAddUsersAction'
+    'action' => 'getAddUsersAction',
+    'auth' => true
 ]);
 
 $map->post('addUsers','/ClientManager/Users/add',[
     'controller'=> 'app\Controllers\UsersController',
-    'action' => 'getAddUsersAction'
+    'action' => 'getAddUsersAction',
+    'auth' => true
 ]);
 
 $map->get('loginForm','/ClientManager/login',[
     'controller'=> 'app\Controllers\AuthController',
-    'action' => 'getLogin'
+    'action' => 'getLogin',
+    
 ]);
 
 $map->get('logout','/ClientManager/logout',[
     'controller'=> 'app\Controllers\AuthController',
-    'action' => 'getLogout'
+    'action' => 'getLogout',
+    'auth' => true
 ]);
 
 $map->post('auth','/ClientManager/auth',[
     'controller'=> 'app\Controllers\AuthController',
     'action' => 'postLogin'
+    
 ]);
 
 $map->get('admin','/ClientManager/admin',[
@@ -138,14 +155,14 @@ $route = $matcher->match($request);
 if(!$route){
     echo 'No Found';
 }else{
-    $handlerData = $route->handler;
+    $handlerData = $route->handler; // trae los datos que definimos desde el mapa de rutas 
     $controllerName = $handlerData['controller'];
     $actionName = $handlerData['action'];
-    $needsAuth = $handlerData['auth'] ?? false;
+    $needsAuth = $handlerData['auth'] ?? false; // si la ruta no esta definida coloca false
 
-    $sessionUserCedula  = $_SESSION['cedula'] ?? null;
+    $sessionUserCedula  = $_SESSION['documento'] ?? null;
     if( $needsAuth && !$sessionUserCedula){
-       header('location: /Proyecto_php/login');
+       header('location: /ClientManager/login');
       die;
     }
 
@@ -158,7 +175,7 @@ if(!$route){
             header(sprintf('%s: %s',$name ,$value), false); 
           }
     }
-    http_response_code($response->getStatusCode());
+    http_response_code($response->getStatusCode());// perimite establecer el codigo de respuesta que vamos a enviar ejmmm cod 200, 404, 500
     echo $response->getBody();
     
 }

@@ -16,15 +16,8 @@ use Respect\Validation\Validator;
 			if(  $request->getMethod() == 'POST'){
 
 
-            $postData = $request->getParsedBody();
-			$SupplierValidator = 
-
-			Validator::key('txt_supplierName', Validator::stringType()->notEmpty());
-			
-
-             try {
-	                $SupplierValidator->assert($postData);
-
+                    $postData = $request->getParsedBody();
+		
                     $files=$request->getUploadedFiles();
                     $logo = $files['logo'];
 
@@ -35,16 +28,15 @@ use Respect\Validation\Validator;
                     	}
 
 					$supplier = new Supplier();
-					$supplier->productName = $postData["txt_supplierName"];
-					$supplier->fileName=$fileName;
+					$supplier->documento = $postData["txt_cedula"];
+					$supplier->nombre = $postData["txt_supplierName"];
+					$supplier->tipo = $postData["txt_supplierType"];
+					$supplier->imagen = $fileName;
+					$supplier->email = $postData["txt_email"];
+					$supplier->telefono = $postData["txt_telefono"];
 					$supplier->Save();
 					$responseMessage = 'Proveedor Guardado Correctamente';
-                    
             
-             } catch(\Exception $e){
-                   $responseMessage ="NO ENVIAR DATOS VACIOS";
-
-             }
 
          
 			}

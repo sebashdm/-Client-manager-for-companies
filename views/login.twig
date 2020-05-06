@@ -2,23 +2,49 @@
 {% extends "mainTemplate.twig" %}
 
 {% block content %}
-  <h1>Iniciar Sesion</h1>
+  
+  
+  <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    <div class="container">
+      <div class="card login-card">
+        <div class="row no-gutters">
+        
+          <div class="col-md-5">
+            <img src="public/images/login.jpg" alt="login" class="login-card-img">
+          </div>
+          <div class="col-md-7">
+            <div class="card-body">
+              <div class="brand-wrapper">
+                <img src="public/images/logo.png" alt="logo" class="logo">
+              </div>
+              <p class="login-card-description">Ingresa a tu cuenta</p>
+              
+              <form action="/ClientManager/auth" method="POST">
+                  <div class="form-group">
+                    <label for="email" class="sr-only">Email</label>
+                    <input type="email" name="txt_email" id="email" class="form-control" placeholder="Correo Electronico">
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="password" class="sr-only">Contraseña</label>
+                    <input type="password" name="txt_password" id="password" class="form-control" placeholder="***********">
+                  </div>
+                  <button type="submit" class="btn btn-block login-btn mb-4">Ingresar</button>
+                </form>
+               
+                <a href="#!" class="forgot-password-link">olvidaste la contraseña?</a>
+                <p class="login-card-footer-text">No tienes una cuenta? <a href="#!" class="text-reset">Solicitala aquí</a></p>
+                <nav class="login-card-footer-nav">
+                  <a href="#!">Desarrollado por</a>
+                  <a href="#!">Sebastian Hernandez</a>
 
-    {% if responseMessage != null %}
-   <div class="alert alert-primary" role="alert">
-           {{responseMessage}}
-   </div>
-  {% endif %}
-   
-       <form action="/ClientManager/auth" method="POST">
+                </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main> 
 
-           <label>Email: </label>
-           <input type="text" name="txt_email"><br>
-           <label>Description: </label>
-           <input type="password" name="txt_password"><br>
-           <button type="submit">Ingresar</button>
-
-       </form>  
 {% endblock %}
 
 
