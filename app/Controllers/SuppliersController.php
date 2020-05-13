@@ -28,7 +28,7 @@ use Respect\Validation\Validator;
                     	}
 
 					$supplier = new Supplier();
-					$supplier->documento = $postData["txt_cedula"];
+					$supplier->id = $postData["txt_cedula"];
 					$supplier->nombre = $postData["txt_supplierName"];
 					$supplier->tipo = $postData["txt_supplierType"];
 					$supplier->imagen = $fileName;
@@ -46,4 +46,48 @@ use Respect\Validation\Validator;
 		 ]);
 		
 	}
+
+
+	public function getUpdateSupplierAction($request){
+          
+		$responseMessage = null;
+		  
+		  if(  $request->getMethod() == 'POST'){
+			
+			$postData = $request->getParsedBody();
+
+			$files=$request->getUploadedFiles();
+			$logo = $files['logo'];
+
+			if($logo->getError() == UPLOAD_ERR_OK)
+				{
+					$fileName = $logo->getClientFilename();
+					$logo->moveTo("uploads/$fileName");
+				}
+			 
+			$SupplierU = Supplier::find($postData["txt_cedula"]);	
+			$SupplierU->update([
+			
+				'nombre' => $postData["txt_supplierName"],
+				'tipo'  => $postData["txt_supplierType"],
+				'email' => $postData["txt_email"],
+				'telefono' => $postData["txt_telefono"],
+				'imagen' => $fileName
+				 
+			]);
+			$SupplierU->Save();
+			
+				  $responseMessage = 'Cliente Actualizado Correctamente';
+		  }
+
+	   return $this->renderHTML('editCustomer.twig',[
+		   'responseMessage' => $responseMessage
+	   ]);
+
+  }
+
+
+
+
+
 }

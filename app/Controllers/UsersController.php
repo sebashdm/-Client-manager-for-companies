@@ -18,7 +18,7 @@ class UsersController extends BaseController
                     $postData = $request->getParsedBody();
 			        $user = new user();
 					$user->nombre = $postData["txt_nomUser"];
-					$user->documento = $postData["txt_cedula"];
+					$user->id = $postData["txt_cedula"];
 					$user->email = $postData["txt_email"];
 					$user->contrasena =password_hash($postData["txt_password"], PASSWORD_DEFAULT);
 					$user->rol = $postData['txt_rol'];

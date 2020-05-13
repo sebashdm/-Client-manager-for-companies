@@ -29,7 +29,7 @@ class AuthController extends BaseController
 	      $user = user::where('email',$postData['txt_email'])->first();
           if($user){
             if( password_verify($postData['txt_password'] , $user->contrasena)){
-                $_SESSION['documento'] = $user->documento;
+                $_SESSION['documento'] = $user->id;
                 return new RedirectResponse('/ClientManager');
                 
                 

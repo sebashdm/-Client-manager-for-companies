@@ -62,6 +62,45 @@ $map->get('viewCustomers','/ClientManager/Customers/',[
     'auth' => true
 ]);
 
+$map->get('viewUsers','/ClientManager/Users/',[
+    'controller'=> 'app\Controllers\ViewUsersController',
+    'action' => 'ViewUsersAction',
+    'auth' => true
+]);
+
+
+$map->get('viewSuppliers','/ClientManager/Suppliers/',[
+    'controller'=> 'app\Controllers\ViewSuppliersController',
+    'action' => 'ViewSuppliersAction',
+    'auth' => true
+]);
+
+
+$map->post('DeleteCustomers','/ClientManager/Customers/',[
+    'controller'=> 'app\Controllers\ViewCustomersController',
+    'action' => 'destroy',
+    'auth' => true
+]);
+
+$map->post('EditCustomers','/ClientManager/Customers/edit',[
+    'controller'=> 'app\Controllers\EditCustomersController',
+    'action' => 'edit',
+    'auth' => true
+]);
+
+$map->post('EditSupplier','/ClientManager/Suppliers/edit',[
+    'controller'=> 'app\Controllers\EditSuppliersController',
+    'action' => 'edit',
+    'auth' => true
+]);
+
+$map->post('DeleteSuppliers','/ClientManager/Suppliers/',[
+    'controller'=> 'app\Controllers\ViewSuppliersController',
+    'action' => 'destroy',
+    'auth' => true
+]);
+
+
 $map->get('saveProducts','/ClientManager/Products/add',[
     'controller'=> 'app\Controllers\ProductsController',
     'action' => 'getAddProductAction',
@@ -77,6 +116,19 @@ $map->post('addProducts','/ClientManager/Products/add',[
 $map->get('saveCustomers','/ClientManager/Customers/add',[
     'controller'=> 'app\Controllers\CustomersController',
     'action' => 'getAddCustomerAction',
+    'auth' => true
+]);
+
+
+$map->post('updateCustomers','/ClientManager/Customers/update',[
+    'controller'=> 'app\Controllers\CustomersController',
+    'action' => 'getUpdateCustomerAction',
+    'auth' => true
+]);
+
+$map->post('updateSupplier','/ClientManager/Suppliers/update',[
+    'controller'=> 'app\Controllers\SuppliersController',
+    'action' => 'getUpdateSupplierAction',
     'auth' => true
 ]);
 
@@ -179,6 +231,7 @@ if(!$route){
     echo $response->getBody();
     
 }
+
 
 
 
