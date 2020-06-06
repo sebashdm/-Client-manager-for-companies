@@ -1,7 +1,9 @@
 <?php
 
+
 namespace app\Controllers;
 use app\models\product;
+use app\models\user;
 
 
 
@@ -12,7 +14,7 @@ class IndexController extends BaseController
 
 		$products = product::all(); //Aca se realiza la consulta a la bd y me trae todos los registros que hay en product.
 	
-		return $this->renderHTML('index.twig',[
+		return $this->renderHTML('index.php',[
 			'products' => $products
 			
 		]);

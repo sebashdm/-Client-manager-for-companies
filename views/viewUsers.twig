@@ -32,13 +32,15 @@
           <ul>
             <li class="nav-item dropdown">
                <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mb-0 text-sm  font-weight-bold">Usuarios</span> 
+                <span class="mb-0 text-sm  font-weight-bold">Administrar Usuarios</span> 
               </a>
               <div class="dropdown-menu  dropdown-menu-right ">
+              
                 <a href="/ClientManager/Users/add" class="dropdown-item">
                   <i class="ni ni-single-02"></i>
                   <span>Nuevo Usuario</span>
                 </a>
+
                  <div class="dropdown-divider"></div>
                 <a href="/ClientManager/Users/" class="dropdown-item">
                   <i class="ni ni-settings-gear-65"></i>
@@ -288,12 +290,12 @@
                      <td>{{ User.email}} </td>
                      <td>{{ User.rol}} </td>
                      <td>{{ User.created_at}} </td>
-                      <td><form method="POST" action="/ClientManager/Customers/edit">
-                           <input type="hidden" name="Clienteid" value="{{ User.id }}">
+                      <td><form method="POST" action="/ClientManager/Users/edit">
+                           <input type="hidden" name="Userid" value="{{ User.id }}">
                            <button type="submit" onclick =" return confirm('Seguro que desea editar estos datos?');" class="btn btn-primary"> Editar</button>
                         </form> <br>
                         <form method="POST" action="/ClientManager/Customers/">
-                           <input type="hidden" name="Clienteid" value="{{ User.id }}">
+                           <input type="hidden" name="Userid" value="{{ User.id }}">
                            <button type="submit" onclick =" return confirm('Seguro que desea borrar los datos?');" class="btn btn-warning">Borrar</button>
                         </form>
                       </td>

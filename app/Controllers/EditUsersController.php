@@ -2,20 +2,20 @@
 
 namespace app\Controllers;
 
-use app\models\Customer;
+use app\models\user;
 use Respect\Validation\Validator;
 
-class EditCustomersController extends BaseController
+class EditUsersController extends BaseController
 {
 	
 	
 
     public function edit(){
-		 $idproducto = $_POST['Clienteid'];
-		 $Customers = Customer::findOrFail($idproducto);
+		 $idUser = $_POST['Userid'];
+		 $users = user::findOrFail($idUser);
 		 
-		 return $this->renderHTML('editCustomer.twig',[
-			'Customers' => $Customers
+		 return $this->renderHTML('editUser.twig',[
+			'Users' => $users
 		]);
 	}
 

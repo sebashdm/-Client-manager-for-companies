@@ -88,8 +88,20 @@ $map->post('EditCustomers','/ClientManager/Customers/edit',[
     'auth' => true
 ]);
 
+$map->post('EditUsers','/ClientManager/Users/edit',[
+    'controller'=> 'app\Controllers\EditUsersController',
+    'action' => 'edit',
+    'auth' => true
+]);
+
 $map->post('EditSupplier','/ClientManager/Suppliers/edit',[
     'controller'=> 'app\Controllers\EditSuppliersController',
+    'action' => 'edit',
+    'auth' => true
+]);
+
+$map->post('EditEmployee','/ClientManager/Employees/edit',[
+    'controller'=> 'app\Controllers\EditEmployeesController',
     'action' => 'edit',
     'auth' => true
 ]);
@@ -126,9 +138,21 @@ $map->post('updateCustomers','/ClientManager/Customers/update',[
     'auth' => true
 ]);
 
+$map->post('updateEmployees','/ClientManager/Employees/update',[
+    'controller'=> 'app\Controllers\EmployeesController',
+    'action' => 'getUpdateEmployeesAction',
+    'auth' => true
+]);
+
 $map->post('updateSupplier','/ClientManager/Suppliers/update',[
     'controller'=> 'app\Controllers\SuppliersController',
     'action' => 'getUpdateSupplierAction',
+    'auth' => true
+]);
+
+$map->post('updateUser','/ClientManager/Users/update',[
+    'controller'=> 'app\Controllers\UsersController',
+    'action' => 'getUpdateUsersAction',
     'auth' => true
 ]);
 

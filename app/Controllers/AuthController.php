@@ -17,7 +17,7 @@ class AuthController extends BaseController
 
 
     public function getLogout(){
-       unset($_SESSION['documento']);
+       unset($_SESSION['id']);
        return new RedirectResponse('login');
        	      
 	}
@@ -30,10 +30,12 @@ class AuthController extends BaseController
           if($user){
             if( password_verify($postData['txt_password'] , $user->contrasena)){
                 $_SESSION['documento'] = $user->id;
+                $_SESSION['idrol'] = $user->idrol;
                 return new RedirectResponse('/ClientManager');
                 
                 
             }else{
+
                 $responseMessage = 'El password o correo no coinciden'; 
             }
           }else{

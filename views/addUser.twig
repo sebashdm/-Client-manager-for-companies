@@ -288,9 +288,15 @@
                     <label for="password" class="sr-only">Contraseña</label>
                     <input type="password" name="txt_password" id="password" class="form-control" placeholder="Password">
                   </div>
-                  <div class="form-group">
-                    <label for="email" class="sr-only">rol</label>
-                    <input type="text" name="txt_rol" id="email" class="form-control" placeholder="Rol">
+                  
+                  <div class="form-group" >
+                   <label for="email" class="sr-only">rol</label>
+                    <select name="txt_rol" id="email">
+                      <option value="1">Administrador</option> 
+                      <option value="2">Empleado</option> 
+                      <option value="3">Cliente</option>
+                      <option value="4">Proveedor</option> 
+                    </select>
                   </div>
 
                   <button type="submit" class="btn btn-block login-btn mb-4">Enviar</button>

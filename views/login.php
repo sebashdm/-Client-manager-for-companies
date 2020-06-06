@@ -1,4 +1,6 @@
+
 <!doctype html>
+
 <html lang="en">
 
 <head>
@@ -46,7 +48,9 @@
                 <p class="login-card-footer-text">No tienes una cuenta? <a href="#!" class="text-reset">Solicitala aquí</a></p>
                 <nav class="login-card-footer-nav">
                   <a href="#!">Desarrollado por</a>
-                  <a href="#!">Sebastian Hernandez</a>
+                  <a href="#!">Sebastian Hernandez</a> 
+                  
+            
                 </nav>
             </div>
           </div>

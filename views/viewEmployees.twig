@@ -32,7 +32,7 @@
           <ul>
             <li class="nav-item dropdown">
                <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mb-0 text-sm  font-weight-bold">Usuarios</span> 
+                <span class="mb-0 text-sm  font-weight-bold">Administrar Usuarios</span> 
               </a>
               <div class="dropdown-menu  dropdown-menu-right ">
                 <a href="/ClientManager/Users/add" class="dropdown-item">
@@ -297,12 +297,12 @@
                               <img src="../uploads/{{Employee.foto}}" alt="image" style=" width:100px;  border-radius: 8px;" height="100">
                           </td>
                       {% endif %}
-                      <td><form method="POST" action="/ClientManager/Customers/edit">
-                           <input type="hidden" name="Clienteid" value="{{ Customer.id }}">
+                      <td><form method="POST" action="/ClientManager/Employees/edit">
+                           <input type="hidden" name="Employeeid" value="{{ Employee.id }}">
                            <button type="submit" onclick =" return confirm('Seguro que desea editar estos datos?');" class="btn btn-primary"> Editar</button>
                         </form> <br>
-                        <form method="POST" action="/ClientManager/Customers/">
-                           <input type="hidden" name="Clienteid" value="{{ Customer.id }}">
+                        <form method="POST" action="/ClientManager/Employees/">
+                           <input type="hidden" name="Clienteid" value="{{ Employee.id }}">
                            <button type="submit" onclick =" return confirm('Seguro que desea borrar los datos?');" class="btn btn-warning">Borrar</button>
                         </form>
                       </td>
